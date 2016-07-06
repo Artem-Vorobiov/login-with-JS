@@ -10,7 +10,7 @@
        <div class="header">
            <h1>My Login</h1>
        </div>
-       <form action="" name="login" onsubmit="return validateForm() ;" method="post">
+       <form name="login" onsubmit="return validateForm() ;" method="post">
            <ul>
                <li>Username: <input class="username" type="text" name="username"></li>
                <li>Password: <input class="password" type="password" name="password"></li>
@@ -18,6 +18,52 @@
            <input type="button" class="submit" value="Log In" name="submit" onclick="validate()">
        </form>
    </div>
+<script>
+
+var count = 2;
+
+function validate()
+{
+    //Read facts from username line and password line;
+    var un = document.login.username.value;
+    var pw = document.login.password.value;
+    // - just inspect my code: alert(un + "  " + pw);
     
+    var valid = false;
+    
+    //Create arrays that imitate our data base;
+    var usernameArray = ["Artem", "Vlad"];
+    var passwordArray = ["123456", "654321"];
+    
+    //Make Cycle that verify if our input data match(compare) with arrays - it's correct; 
+    for (var i = 0; i < usernameArray.length; i++)
+{
+    if((un == usernameArray[i]) && (pw == passwordArray[i]))
+    { valid = true;
+      break;
+    }
+}
+    // if correct - go to another site
+    if (valid) 
+        {alert("Login was successful");
+        window.location = "www.google.ru";
+        return false;
+        }
+    // make cycle to check 'count' and minus one digit in loop
+    if ( count >= 1 ){
+        alert("Wrong pass");
+        count--;
+    }
+    else {
+        alert("Incorrect 3 time and blocked");
+        document.login.username.value = "Blocked";
+        document.logim.password.value = "Cant see this";
+        document.login.username.disabled = true;
+        document.login.password.disabled = true;
+        return false;
+    }
+}
+
+</script>    
 </body>
 </html>
